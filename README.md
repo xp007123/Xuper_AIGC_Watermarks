@@ -15,6 +15,7 @@
 - 以上两个修改文件都在放在了仓库之中，可直接替换，在文件中搜索`amend`可定位查询修改的地方。
   
 - 前端页面的修改效果如图所示：
+![_98OUV}7FN3G@38DA~3 Z(C](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/a0bed4d0-1bfe-4b94-b57f-8ad68a193338)
 
 ## 修改xuper源码
 ### 部署xuper并跑通示例
