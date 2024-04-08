@@ -7,25 +7,43 @@
 
 ## 修改xuper源码
 ### 部署xuper并跑通示例
-我使用的 `V5.3` 版本部署。  
-文档地址链接：[我的简介](https://xuper.baidu.com/n/xuperdoc/v5.3/quickstart/quickstart.html)
+我使用的 `V5.3` 版本部署。[Xuper文档地址](https://xuper.baidu.com/n/xuperdoc/v5.3/quickstart/quickstart.html)   
 
 ### 源码修改
 通过修改Xuperchain底层的Nonce处理逻辑，来达到使用嵌入到水印中的Nonce值作为交易Nonce的目的。     
 
 修改处为：kernel\engines\xuperos\chain.go 中的 SubmitTx函数，详情可参考仓库中的chain.go文件。可通过两个方法来修改源码：  
-`方法一` ：
-查看xuperchain目录下的go.mod文件，找到 github.com/xuperchain/xupercore 对应的版本如 v0.0.0-20221206131501-5a3396e9215d
+`方法一` 
+- 查看xuperchain目录下的go.mod文件，找到 github.com/xuperchain/xupercore 对应的版本如 v0.0.0-20221206131501-5a3396e9215d
 
-前往你的GOPATH目录所在，可通过 go env 查看。  
+- 前往你的GOPATH目录所在，可通过 go env 查看。
+```Bash 
 cd $GOPATH/pkg/mod/github.com/xuperchain/
+```
 
-使用仓库中的chain.go替换 xupercore@v0.0.0-20221206131501-5a3396e9215d 目录下的chain.go
+- 使用仓库中的chain.go替换 xupercore@v0.0.0-20221206131501-5a3396e9215d 目录下的chain.go
 
-停止xuperchain示例网络，再次编译启动，命令如下：
+- 停止xuperchain示例网络，再次编译启动，命令如下：
 ```Bash
 bash control.sh stop  
 cd ..  
 make all  
 bash control.sh start  
+```
+`方法二` 
+- 不直接修改Xuperchain的底层包
+```Bash
+cd $GOPATH/pkg/mod/github.com/xuperchain/
+cp -r xupercore@v0.0.0-20221206131501-5a3396e9215d xupercore@v0.0.0-amend
+```  
+- 使用仓库中的chain.go替换 xupercore@v0.0.0-amend 目录下的chain.go
+- 在xuperchain目录下的go.mod文件中添加replace命令
+```Bash
+vim go.mod
+replace github.com/xuperchain/xupercore => /home/chalken/GOPATH/pkg/mod/github.com/xuperchain/xupercore@v0.0.0-amend-20221206131501
+```
+- 在退出go.mod后，停止停止xuperchain示例网络，make后再次启动
+```Bash
+go mod tidy
+make allt
 ```
