@@ -8,7 +8,7 @@
 ## 修改xuper源码
 ### 部署xuper并跑通示例
 我使用的 `V5.3` 版本部署。  
-文档地址链接：[Xuper文档地址][https://xuper.baidu.com/n/xuperdoc/v5.3/quickstart/quickstart.html]
+文档地址链接：[我的简介](https://xuper.baidu.com/n/xuperdoc/v5.3/quickstart/quickstart.html)
 
 ### 源码修改
 通过修改Xuperchain底层的Nonce处理逻辑，来达到使用嵌入到水印中的Nonce值作为交易Nonce的目的。     
