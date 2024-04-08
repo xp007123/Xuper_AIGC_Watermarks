@@ -71,8 +71,29 @@ solc --bin --abi Watermarks.sol -o .
 bin/xchain-cli evm deploy --account XC7777777777777777@xuper --cname watermarkasss  --fee 5200000 Watermarkasss.bin --abi Watermarkasss.abi
 ```
 
-## 启动XuperChain服务端
+## 启动XuperChain服务端（xuper-sdk-go）
 - 我用的是XuperChain的golang SDK版本。[XuperGolangSDK文档地址](https://xuper.baidu.com/n/xuperdoc/v5.3/development_manuals/xuper-sdk/xuper-sdk-go.html)
 
-- 在SDK连接你的XuperChain测试网络无误后，使用仓库中的main.go文件启动服务端，请注意修改main.go文件中的redis配置。
+- 在SDK连接你的XuperChain测试网络无误后，使用仓库中的main.go文件启动服务端，请注意修改main.go文件中的redis及节点IP等配置。
+
+## 效果验证
+- 在你启动了Stable Diffusion 和 XuperChain服务端后，请在Stable Diffusion页面输入一组Prompt提示词，并调整Sampling steps为5 （生成快一些）。
+
+- 图片生成之后，我们可以在 stable-diffusion-webui-master\outputs\txt2img-images 目录下看到生成的图片，其中 `XXX_3we.png` 图片为添加了水印的图片。
+  
+- 在生成几张图片后点击 `Copyright Protection` 按钮，该按钮会使用嵌入在水印中的nonce值将Prompt，图片生成设置等信息全部上链。
+
+- 我们在[回到顶部](#readme)的图片中的可以看到上链完成会返回txid：66d20173951c8b883f12df720d452d919284b91f154ba991af4ea3716a9d833b
+
+- 前往XuperChain的网络环境下查询交易：
+```Bash
+bin/xchain-cli tx query 66d20173951c8b883f12df720d452d919284b91f154ba991af4ea3716a9d833b
+```
+
+- 我们可以看到交易中包含了nonce值和用户的Prompt，图片生成设置等信息，且nonce值与交易头中的nonce值一致
+![F}1T00(S$3`1RX1O$~)014I](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/5e634ccc-8718-4d33-9f27-a2b946b7d39b)
+![OQHOD7TQGZKSXOR%GC3{I52](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/f7835e59-3559-4916-ab91-2ede2470c82b)
+
+- 此时我们提取水印看下刚刚所生成的图片中的水印值是否都是该交易的nonce值  
+
 
