@@ -94,6 +94,17 @@ bin/xchain-cli tx query 66d20173951c8b883f12df720d452d919284b91f154ba991af4ea371
 ![F}1T00(S$3`1RX1O$~)014I](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/5e634ccc-8718-4d33-9f27-a2b946b7d39b)
 ![OQHOD7TQGZKSXOR%GC3{I52](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/f7835e59-3559-4916-ab91-2ede2470c82b)
 
-- 此时我们提取水印看下刚刚所生成的图片中的水印值是否都是该交易的nonce值  
+- 此时我们提取水印看下刚刚所生成的图片中的水印值是否都是该交易的nonce值
+- 运行下面的python程序，注意修改路径为你的图片路径。我们可以看到提取到的nonce值与交易中的nonce一致。
+```python
+from blind_watermark import WaterMark
 
+bwm1 = WaterMark(password_img=1, password_wm=1)
+wm_extract = bwm1.extract("D:\\code\\stable-diffusion-webui-master\\outputs\\txt2img-images\\2024-04-08\\00007-2479572804_3we.png", 
+                          wm_shape=126, mode='str')
+print(wm_extract)
+```
+![CJ~Z4052AY1(TODJW1LT3X2](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/2ce6a144-b7cc-43cc-8c07-0d75d7029a60)
 
+**方案Demo演示到此结束，该Demo是方案的核心逻辑，实现了Nonce的嵌入并与链上对应起来就可基于该特征拓展实现诸多功能，解决AIGC场景下全部作品上链版权存证和监管问题，大幅度减少了交易开销，提高了区块链+AIGC版权应用大规模落地的可能性**
+**
