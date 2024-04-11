@@ -110,3 +110,6 @@ print(wm_extract)
 
 ## 以下是该Demo的视频演示
 
+https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/fd44641c-ea60-4593-a64a-a5cdb7358faa
+
+
