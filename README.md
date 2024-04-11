@@ -107,4 +107,6 @@ print(wm_extract)
 ![CJ~Z4052AY1(TODJW1LT3X2](https://github.com/xp007123/Xuper_AIGC_Watermarks/assets/57866608/2ce6a144-b7cc-43cc-8c07-0d75d7029a60)
 
 **方案Demo演示到此结束，该Demo是方案的核心逻辑，实现了Nonce的嵌入并与链上对应起来就可基于该特征拓展实现诸多功能，解决AIGC场景下全部作品上链版权存证和监管问题，大幅度减少了交易开销，提高了区块链+AIGC版权应用大规模落地的可能性**
-**
+
+## 以下是该Demo的视频演示
+
